@@ -1,0 +1,46 @@
+pipeline {
+    agent any  // Defines that this pipeline can run on any available agent
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from your Git repository
+                git 'https://github.com/yourusername/your-repository.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build your project (replace with actual commands)
+                echo 'Building the application...'
+                sh './build.sh'  // Assuming you have a build script
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run tests on the code (replace with actual commands)
+                echo 'Running tests...'
+                sh './test.sh'  // Assuming you have a test script
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Deploy your application (replace with actual commands)
+                echo 'Deploying the application...'
+                sh './deploy.sh'  // Assuming you have a deploy script
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}
+
